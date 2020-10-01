@@ -106,5 +106,6 @@ void merge_telemetry(double **telemetries,
                      double* &telemetry,
                      int &telemetry_current_size,
                      int &telemetry_max_size) {
-  // IMPLEMENT YOUR FUNCTION HERE
+
+
 }
