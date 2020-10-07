@@ -24,8 +24,10 @@ double* extend_array(double* array, int length, int new_size) {
 
 double* shrink_array(double* array, int length, int new_size) {
     double *new_array = new double[new_size];
-    for (int i = 0 ; i < new_size; i ++){
+    for (int i = 0 ; i < length; i ++){
+        if (i<new_size){
             new_array[i] = array[i];
+        }
     }
     delete array;
     return new_array;
@@ -107,5 +109,29 @@ void merge_telemetry(double **telemetries,
                      int &telemetry_current_size,
                      int &telemetry_max_size) {
 
+    for (int i=0; i<tot_telemetries;i ++){
+        for(int j=0;j<telemetries_sizes[i];j ++){
+            telemetry = append_to_array((telemetries[i][j]),(telemetry),(telemetry_current_size), (telemetry_max_size));
+            // std::cout << telemetries[i][j] << std::endl;
+        }
+    }
+    double tmp;
+    int i, j;
+        for (i = 0; i < (telemetry_current_size); i += 3) {
+            for (j = 0; j < (telemetry_current_size-i-3); j+=3) {
+                if (telemetry[j] > telemetry[j+3]){
+                    tmp= telemetry[j];
+                    telemetry[j] = telemetry[j+3];
+                    telemetry[j+3] = tmp;
+                    tmp = telemetry[j+1];
+                    telemetry[j+1] = telemetry[j+4];
+                    telemetry[j+4] = tmp;
+                    tmp = telemetry[j+2];
+                    telemetry[j+2] = telemetry[j+5];
+                    telemetry[j+5] = tmp;
+
+                }
+            }
+    }
 
 }
